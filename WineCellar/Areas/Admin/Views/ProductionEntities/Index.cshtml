@@ -1,0 +1,62 @@
+﻿@model WineCellar.Models.ViewModels.ProductionEntitiesVM
+
+<section id="varietalsContent">
+    <h1>Varietals</h1>
+
+    <div class="mb-3">
+        <div class="input-group">
+            <input type="text" class="form-control" id="varietalForm" placeholder=" Varietal name" aria-label="Varietal name" aria-describedby="varietalFormBtn">
+            <button class="btn btn-primary" type="button" id="varietalFormBtn">Add</button>
+        </div>
+
+        <span id="varietalFormError" class="text-danger" style="display: none;"></span>
+    </div>
+
+    <table class="table">
+        <thead class="d-none">
+            <tr>
+                <th>Delete Action</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var entity in Model.Varietals.Entities)
+                @await Component.InvokeAsync("CmsRow", new { entity.Id, entity.Name })
+        </tbody>
+    </table>
+
+    @await Component.InvokeAsync("Pagination", Model.Varietals.Pagination)
+</section>
+
+<section id="producersContent">
+    <h1>Wine Producers</h1>
+
+    <div class="mb-3">
+        <div class="input-group">
+                <input type="text" class="form-control" id="producerForm" placeholder=" Producer name" aria-label="Producer name" aria-describedby="producerFormBtn">
+                <button class="btn btn-primary" type="button" id="producerFormBtn">Add</button>
+        </div>
+
+        <span id="countryFormError" class="text-danger" style="display: none;"></span>
+    </div>
+
+    <table class="table">
+        <thead class="d-none">
+            <tr>
+                <th>Delete Action</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var entity in Model.WineProducers.Entities)
+                @await Component.InvokeAsync("CmsRow", new { entity.Id, entity.Name })
+        </tbody>
+    </table>
+
+    @await Component.InvokeAsync("Pagination", Model.WineProducers.Pagination)
+</section>
+
+@section Scripts {
+    <script src="~/js/utils.js"></script>
+    <script src="~/js/productionEntities.js"></script>
+}

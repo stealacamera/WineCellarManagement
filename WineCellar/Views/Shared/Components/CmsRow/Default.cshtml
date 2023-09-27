@@ -1,0 +1,16 @@
+﻿@{
+    int id = (dynamic)Model.Id;
+    string name = (dynamic)Model.Name;
+}
+
+<tr data-entity-id="@id">
+    <td>
+        <button type="button" class="btn">
+            <i class="fa-solid fa-xmark" data-entity-id="@id"></i>
+        </button>
+    </td>
+    <td>
+        <p contenteditable="true" data-entity-id="@id">@name</p>
+        <span class="text-danger m-0" style="display: none;" data-entity-id="@id"></span>
+    </td>
+</tr>

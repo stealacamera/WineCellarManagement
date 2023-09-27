@@ -1,0 +1,344 @@
+﻿Aglianico
+Agawam
+Albariño
+Albemarle
+Aleatico
+Alicante Bouschet
+Aligoté
+Alvarelhão
+Alvarinho
+Arneis
+Aurore
+Auxerrois
+Bacchus
+Baco blanc
+Baco noir
+Barbera
+Beacon
+Beclan
+Bellandais
+Beta
+Biancolella
+Black Corinth
+Black Malvoisie
+Black Monukka
+Black Muscat
+Black Pearl
+Blanc Du Bois
+Blaufränkish
+Blue Eye
+Bonarda
+Bountiful
+Brianna
+Burdin 4672
+Burdin 5201
+Burdin 11042
+Burgaw
+Burger
+Cabernet Diane
+Cabernet Doré
+Cabernet franc
+Cabernet Pfeffer
+Cabernet Sauvignon
+Calzin
+Campbell Early
+Canada Muscat
+Canaiolo
+Canaiolo Nero
+Captivator
+Carignan
+Carignane
+Carlos
+Carmenère
+Carmine
+Carnelian
+Cascade
+Castel 19–637
+Catawba
+Cayuga White
+Centurion
+Chambourcin
+Chancellor
+Charbono
+Chardonel
+Chardonnay
+Chasselas doré
+Chelois
+Chenin blanc
+Chief
+Chowan
+Cinsaut
+Clairette blanche
+Clinton
+Colombard
+Colobel
+Corot noir
+Cortese
+Corvina
+Concord
+Conquistador
+Couderc noir
+Counoise
+Cowart
+Creek
+Crimson Cabernet
+Cynthiana
+Dearing
+De Chaunac
+Delaware
+Diamond
+Dixie
+Dolcetto
+Doreen
+Dornfelder
+Dulcet
+Durif
+Dutchess
+Early Burgundy
+Early Muscat
+Edelweiss
+Eden
+Ehrenfelser
+Ellen Scott
+Elvira
+Emerald Riesling
+Erbaluce
+Favorite
+Feher Szagos
+Fernão Pires
+Fern Munson
+Fiano
+Flame Tokay
+Flora
+Florental
+Folle blanche
+Forastera
+Fredonia
+Freedom
+Freisa
+French Colombard
+Frontenac
+Frontenac gris
+Fry
+Fumé blanc
+Furmint
+Gamay noir
+Garnacha
+Garnacha blanca
+Garronet
+Geneva Red 7
+Gewürztraminer
+Gladwin 113
+Glennel
+Gold
+Golden Isles
+Golden Muscat
+Graciano
+Grand Noir
+Green Hungarian
+Grenache
+Grenache blanc
+Grenache noir
+Grignolino
+Grillo
+Gros Verdot
+Grüner Veltliner
+Helena
+Herbemont
+Higgins
+Horizon
+Hunt
+Iona
+Interlaken
+Isabella
+Island Belle
+Ives
+James
+Jewell
+Joannes Seyve 12–428
+Joannes Seyve 23–416
+Kerner
+Kay Gray
+Kleinberger
+La Crescent
+LaCrosse
+Lagrein
+Lake Emerald
+Lambrusco
+Landal
+Landot noir
+Lenoir
+Léon Millot
+Lemberger
+Louise Swenson
+Lucie Kuhlmann
+Madeline Angevine
+Magnolia
+Magoon
+Malbec
+Malvasia bianca
+Mammolo
+Maréchal Foch
+Marquette
+Marsanne
+Mataro
+Melody
+Melon
+Melon de Bourgogne
+Merlot
+Meunier
+Mish
+Mission
+Missouri Riesling
+Monastrell
+Mondeuse
+Montefiore
+Montepulciano
+Moore Early
+Morio-Muskat
+Moscato greco
+Mourvèdre
+Müller-Thurgau
+Münch
+Muscadelle
+Muscat blanc
+Muscat Canelli
+Muscat du Moulin
+Muscat Hamburg
+Muscat of Alexandria
+Muscat Ottonel
+Naples
+Nebbiolo
+Négrette
+Negrara
+Negro Amaro
+Nero d'Avola
+New York Muscat
+Niagara
+Noah
+Noble
+Noiret
+Norton
+Ontario
+Orange Muscat
+Palomino
+Pamlico
+Pedro Ximenes
+Peloursin
+Petit Bouschet
+Petit Manseng
+Petit Verdot
+Petite Sirah
+Peverella
+Picpoul
+Pinotage
+Pinot blanc
+Pinot Grigio
+Pinot gris
+Pinot Meunier
+Pinot noir
+Piquepoul blanc
+Prairie Star
+Precoce de Malingre
+Pride
+Primitivo
+Princess
+Rayon d'Or
+Ravat 34
+Ravat 51
+Ravat noir
+Redgate
+Refosco
+Regale
+Reliance
+Riesling
+Rkatziteli (Rkatsiteli)
+Roanoke
+Rondinella
+Rosette
+Roucaneuf
+Rougeon
+Roussanne
+Royalty
+Rubired
+Ruby Cabernet
+St. Croix
+St. Laurent
+St. Pepin
+St. Vincent
+Sabrevois
+Sagrantino
+Saint Macaire
+Salem
+Salvador
+Sangiovese
+Sauvignon blanc
+Sauvignon gris
+Scarlet
+Scheurebe
+Sémillon
+Sereksiya
+Seyval
+Seyval blanc
+Shiraz
+Siegerrebe
+Siegfried
+Southland
+Souzão
+Steuben
+Stover
+Sugargate
+Sultanina
+Summit
+Suwannee
+Sylvaner
+Symphony
+Syrah
+Swenson Red
+Tannat
+Tarheel
+Taylor
+Tempranillo
+Teroldego
+Thomas
+Thompson Seedless
+Tinta Madeira
+Tinto cão
+Tocai Friulano
+Topsail
+Touriga
+Traminer
+Traminette
+Trebbiano
+Trousseau
+Trousseau gris
+Ugni blanc
+Valdepeñas
+Valdiguié
+Valerien
+Valiant
+Valvin Muscat
+Van Buren
+Veeblanc
+Veltliner
+Ventura
+Verdelet
+Verdelho
+Vergennes
+Vermentino
+Vidal blanc
+Vignoles
+Villard blanc
+Villard noir
+Vincent
+Viognier
+Vivant
+Welsch Rizling
+Watergate
+Welder
+White Riesling
+Wine King
+Yuga
+Zinfandel
+Zinthiana
+Zweigelt

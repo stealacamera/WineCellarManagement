@@ -1,0 +1,56 @@
+﻿#France
+Bordeaux
+Burgundy (Beaujolais)
+Champagne
+Loire
+Alsace
+Rhône
+Provence
+Languedoc-Roussillon
+Jura
+Champagne
+#Italy
+Piedmont
+Tuscany
+Campania
+Veneto
+Friuli-Venezia Giulia
+Abruzzo
+Sicily
+Lambrusco
+Franciacorta
+Lugana
+#United States
+California
+New York
+Oregon
+Washington State
+#Spain
+Rioja
+Ribera del Duero
+Rías Baixas
+Priorat
+Rueda
+Castilla y Léon
+Toro
+Bierzo
+Jerez/Sherry
+Extremadura
+Utiel-Requena
+Jumilla
+#Portugal
+Port
+Douro
+#United Kingdom
+England
+#Argentina
+Mendoza
+Patagonia
+#Australia
+Margaret River
+Barossa Valley
+Hunter Valley
+Victoria
+#New Zealand
+Marlborough
+Central Otago
