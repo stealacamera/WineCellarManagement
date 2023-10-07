@@ -90,8 +90,7 @@ function addParentRowFuncitionalities(row, baseUrl) {
         e,
         baseUrl + '/Upsert',
         JSON.stringify({ Id: instanceId, Name: e.target.textContent.trim() }),
-        instanceId,
-        row
+        row.querySelector(`.text-danger[data-entity-id='${instanceId}']`)
     ));
 
     // Sets region list dropdown functionality

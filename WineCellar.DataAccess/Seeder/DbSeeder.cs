@@ -1,6 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using WineCellar.Models;
+using WineCellar.Utilities;
 
 namespace WineCellar.DataAccess.Seeder
 {
@@ -10,11 +13,21 @@ namespace WineCellar.DataAccess.Seeder
         private readonly IHostEnvironment hostEnv;
         private readonly string dirPath;
 
-        public DbSeeder(AppDbContext db, IHostEnvironment hostEnv)
+        private readonly RoleManager<AppRole> roleManager;
+        private readonly UserManager<AppUser> userManager;
+
+        public DbSeeder(
+            AppDbContext db, 
+            IHostEnvironment hostEnv,
+            RoleManager<AppRole> roleManager,
+            UserManager<AppUser> userManager)
         {
             this.db = db;
             this.hostEnv = hostEnv;
+            this.roleManager = roleManager;
+            this.userManager = userManager;
 
+            // Gets path to data files folder
             dirPath = Path.Combine(this.hostEnv.ContentRootPath, @"..\WineCellar.DataAccess\Seeder\Data");
         }
 
@@ -32,10 +45,70 @@ namespace WineCellar.DataAccess.Seeder
                 throw;
             }
 
+            SeedRoles();
+            SeedAdmin();
+
+            SeedDummyData();
+
             SeedVarietals();
             SeedWineProducers();
             SeedCountries();
             SeedRegions();
+        }
+
+        private void SeedDummyData()
+        {
+            if(db.Establishments.Count() == 0)
+            {
+                for(int i = 1; i <= 3; i++)
+                {
+                    Establishment establishment = new Establishment { Name = $"Establishment{i}" };
+                    db.Establishments.Add(establishment);
+                    db.SaveChanges();
+
+                    // Creates manager
+                    createSimpleUser($"Manager{establishment.Id}", $"manager{establishment.Id}@gmail.com", establishment.Id, Consts.Role_Manager);
+
+                    // Creates 3 employees per manager
+                    createSimpleUser($"Emp{establishment.Id}a", $"emp{establishment.Id}a@gmail.com", establishment.Id, Consts.Role_Employee);
+                    createSimpleUser($"Emp{establishment.Id}b", $"emp{establishment.Id}b@gmail.com", establishment.Id, Consts.Role_Employee);
+                    createSimpleUser($"Emp{establishment.Id}c", $"emp{establishment.Id}c@gmail.com", establishment.Id, Consts.Role_Employee);
+                }
+            }
+        }
+
+        private AppUser createSimpleUser(string username, string email, int establishmentId, string role)
+        {
+            AppUser user = new AppUser { UserName = username, Email = email, EmailConfirmed = true, EstablishmentId = establishmentId };
+
+            userManager.CreateAsync(user, "Password123//").GetAwaiter().GetResult();
+            userManager.AddToRoleAsync(user, role).GetAwaiter().GetResult();
+
+            return user;
+        }
+
+        private void SeedRoles()
+        {
+            if (!roleManager.RoleExistsAsync(Consts.Role_Admin).GetAwaiter().GetResult())
+            {
+                string[] roles = { Consts.Role_Admin, Consts.Role_Manager, Consts.Role_Employee };
+
+                foreach(string role in roles)
+                    roleManager.CreateAsync(new AppRole(role)).GetAwaiter().GetResult();
+            }
+        }
+
+        private void SeedAdmin()
+        {
+            string email = "admin@gmail.com";
+
+            if(db.Users.FirstOrDefault(x => x.Email == email) == null)
+            {
+                AppUser admin = new AppUser { UserName = "Administrator", Email = email, EmailConfirmed = true };
+
+                userManager.CreateAsync(admin, "Password123//").GetAwaiter().GetResult();
+                userManager.AddToRoleAsync(admin, Consts.Role_Admin).GetAwaiter().GetResult();
+            }
         }
 
         private void SeedVarietals()

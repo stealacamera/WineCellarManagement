@@ -29,8 +29,7 @@ function addRowFunctionalities(tbody, row, baseUrl, additionalData = null) {
         e,
         baseUrl + '/Upsert',
         JSON.stringify(Object.assign({ Id: Number(e.target.dataset.entityId), Name: e.target.textContent.trim() }, additionalData)),
-        e.target.dataset.entityId,
-        row
+        row.querySelector(`.text-danger[data-entity-id='${instanceId}']`)
     ));
 }
 
@@ -84,40 +83,36 @@ function create(url, data, errorElement, addDOMFunction) {
  * Sends post request when 'enter' key is pressed
  * @param {Event} event
  * @param {string} url
- * @param {Number} instanceId
- * @param {string} data            - JSON string
- * @param {Element} container   - container holding instance content
+ * @param {string} data             - JSON string
+ * @param {Element} errorElement 
  */
-function keyPressUpdate(event, url, data, instanceId, container) {
+function keyPressUpdate(event, url, data, errorElement) {
     if (event.code === 'Enter') {
         event.preventDefault();
-        update(url, data, instanceId, container);
+        update(url, data, errorElement);
     }
 }
 
 /**
  * Sends post request, shows error message if failed or shows success toast if successful
  * @param {string} url
- * @param {Number} instanceId
  * @param {string} data         - JSON string
- * @param {Element} container   - container holding instance content
+ * @param {Element} container
  */
-function update(url, data, instanceId, container) {
-    const txtError = container.querySelector(`.text-danger[data-entity-id='${instanceId}']`);
-
+function update(url, data, errorElement) {
     sendRequest({
         method: 'post',
         url: url,
         data: data,
         successFunction: () => {
-            txtError.textContent = '';
-            txtError.style.display = 'none';
+            errorElement.textContent = '';
+            errorElement.style.display = 'none';
 
             showStatusToast('Update successful', true);
         },
         failureFunction: response => {
-            txtError.textContent = response.message;
-            txtError.style.display = 'block';
+            errorElement.textContent = response.message;
+            errorElement.style.display = 'block';
         }
     });
 }
