@@ -6,6 +6,9 @@
         IWineProducerRepository WineProducer { get; }
         ICountryRepository Country { get; }
         IRegionRepository Region { get; }
+        IEstablishmentRepository Establishment { get; }
+        IAppUserRepository AppUser { get; }
+        IAppRoleRepository AppRole { get; }
 
         void Save();
     }

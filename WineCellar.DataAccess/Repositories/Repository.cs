@@ -34,11 +34,11 @@ namespace WineCellar.DataAccess.Repositories
         {
             IQueryable<T> query = set;
 
-            if(filter != null)
-                query = query.Where(filter);
-
-            foreach(var prop in includeProps)
+            foreach (var prop in includeProps)
                 query = query.Include(prop);
+
+            if (filter != null)
+                query = query.Where(filter);
 
             if(orderBy != null)
                 query = descendingOrder ? query.OrderByDescending(orderBy) : query.OrderBy(orderBy);
