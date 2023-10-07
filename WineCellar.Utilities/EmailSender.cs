@@ -26,7 +26,7 @@ namespace WineCellar.Utilities
 
             using(var emailClient = new SmtpClient())
             {
-                emailClient.Connect("smtp.ethereal.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
+                emailClient.Connect("smtp.ethereal.email", 587, MailKit.Security.SecureSocketOptions.StartTls);
                 emailClient.Authenticate(emailSettings.Email, emailSettings.Password);
                 emailClient.Send(emailMessage);
                 emailClient.Disconnect(true);

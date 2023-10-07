@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using WineCellar.DataAccess.Seeder;
 using WineCellar.Utilities;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using WineCellar.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +19,7 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(
 
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddDefaultTokenProviders().AddEntityFrameworkStores<AppDbContext>();
+builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 builder.Services.AddScoped<IEmailSender, EmailSender>();
 builder.Services.AddScoped<IDbSeeder, DbSeeder>();
 builder.Services.AddScoped<IWorkUnit, WorkUnit>();
