@@ -4,7 +4,7 @@ const successColor = '#198754', failureColor = '#ff3333';
 /**
  * 
  * @param {string} message
- * @param {string} isSuccessful - HEX code string
+ * @param {boolean} isSuccessful
  */
 function showStatusToast(message, isSuccessful) {
     Toastify({ text: message, close: true, style: { background: isSuccessful ? successColor : failureColor } }).showToast();

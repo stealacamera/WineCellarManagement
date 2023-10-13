@@ -35,7 +35,6 @@ namespace WineCellar.Areas.Admin.Controllers
             }
             else
                 return BadRequest(new { message = ModelState.Values.SelectMany(v => v.Errors.Select(b => b.ErrorMessage)).First() });
-
         }
 
         [HttpDelete]
