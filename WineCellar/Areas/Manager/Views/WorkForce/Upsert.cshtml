@@ -1,0 +1,71 @@
+﻿@model WineCellar.Models.ViewModels.EmployeeUserVM
+
+@if (TempData["failure"] != null)
+{
+    <div class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">@TempData["failure"]</div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+}
+
+<h2>@(Model.Id == null ? "Add a new employee" : "Update " + Model.Email)</h2>
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form method="post" asp-action="Upsert">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label class="form-label fw-bold" asp-for="Username"></label>
+        <input type="text" class="form-control" asp-for="Username">
+        <span asp-validation-for="Username" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label fw-bold" asp-for="Email"></label>
+        <input type="email" class="form-control" asp-for="Email">
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <fieldset class="d-flex gap-4">
+            <legend class="fw-bold">Role:</legend>
+
+            @foreach (var role in Model.RolesList)
+            {
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="Role.Name" value="@role.Value" checked="@(role.Text == Model.Role.Name)">
+                    <label class="form-check-label" for="@role.Text">@role.Text</label>
+                </div>
+            }
+        </fieldset>
+
+        <span asp-validation-for="Role" class="text-danger"></span>
+    </div>
+    
+    @if(Model.Id == null)
+    {
+        <div class="mb-3">
+            <label class="form-label fw-bold">Password</label>
+            
+            <div class="d-flex">
+                <p>The base password is:</p>
+
+                <div class="input-group w-50">
+                    <input type="password" class="form-control" asp-for="Password" value="@Model.Password" readonly>
+                    <button id="password-visibility" class="input-group-text"><i class="fa-regular fa-eye"></i></button>
+                </div>
+            </div>
+
+            <p>Ensure your employee changes their password after logging in for the first time</p>
+        </div>
+    }
+
+    <button class="btn btn-primary" type="submit">@(Model.Id == null ? "Create" : "Update")</button>
+</form>
+
+@section Scripts {
+    <script src="~/js/workforce_upsert.js"></script>
+}

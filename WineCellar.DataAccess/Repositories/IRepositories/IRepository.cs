@@ -13,9 +13,14 @@ namespace WineCellar.DataAccess.Repositories.IRepositories
 
         T? GetFirstOrDefault(Expression<Func<T, bool>> filter, params string[] includeProps);
 
+        T GetFirst(Expression<Func<T, bool>> filter, params string[] includeProps);
+
         void Add(T instance);
+
         void Remove(T instance);
+
         void RemoveRange(IEnumerable<T> instances);
+
         int Count();
     }
 }

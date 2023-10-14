@@ -59,6 +59,17 @@ namespace WineCellar.DataAccess.Repositories
             return query.FirstOrDefault(filter);
         }
 
+        public T GetFirst(Expression<Func<T, bool>> filter, params string[] includeProps)
+        {
+            IQueryable<T> query = set;
+
+            foreach (var prop in includeProps)
+                query = query.Include(prop);
+
+            return query.First(filter);
+
+        }
+
         public void Remove(T instance)
         {
             set.Remove(instance);
