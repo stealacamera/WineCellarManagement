@@ -20,25 +20,25 @@ namespace WineCellar.Areas.Manager.Controllers
 
         private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<AppRole> _roleManager;
-        private readonly IWorkUnit db;
+        private readonly IWorkUnit _workUnit;
 
-        public WorkForceController(UserManager<AppUser> userManager, RoleManager<AppRole> roleManager, IWorkUnit db)
+        public WorkForceController(UserManager<AppUser> userManager, RoleManager<AppRole> roleManager, IWorkUnit workUnit)
         {
             _userManager = userManager;
             _roleManager = roleManager;
-            this.db = db;
+            _workUnit = workUnit;
         }
 
         public IActionResult Index(int page = 1)
         {
             var currUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            AppUser currUser = db.AppUser.GetFirst(x => x.Id == currUserId);
+            AppUser currUser = _workUnit.AppUser.GetFirst(x => x.Id == currUserId);
 
             // Gets all company roles except manager
             List<AppRole> lowLvlRoles = _roleManager.Roles.Where(x => x.Name != Consts.Role_Admin).ToList();
 
             // Gets all employees under the user's establishment
-            IEnumerable <AppUser> workers = db.AppUser.GetAll(
+            IEnumerable <AppUser> workers = _workUnit.AppUser.GetAll(
                 x => x.Id != currUser.Id && x.EstablishmentId == currUser.EstablishmentId && lowLvlRoles.Contains(x.Roles.First()),
                 pageNumber: page,
                 includeProps: "Roles"
@@ -59,14 +59,14 @@ namespace WineCellar.Areas.Manager.Controllers
             AppUser? instanceUser = null;
 
             if (!id.IsNullOrEmpty())
-                instanceUser = db.AppUser.GetFirstOrDefault(x => x.Id == id, includeProps: "Roles");
+                instanceUser = _workUnit.AppUser.GetFirstOrDefault(x => x.Id == id, includeProps: "Roles");
 
             // Sets up employee view model if new user is being created
             // or existing user is being edited
             if (instanceUser == null)
             {
                 var currUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-                AppUser currUser = db.AppUser.GetFirst(x => x.Id == currUserId, includeProps: "Establishment");
+                AppUser currUser = _workUnit.AppUser.GetFirst(x => x.Id == currUserId, includeProps: "Establishment");
 
                 model.Password = $"{currUser.Establishment!.Name}_123"; // Base password for establishment's employees
             }
@@ -95,7 +95,7 @@ namespace WineCellar.Areas.Manager.Controllers
                 if (instance.Id.IsNullOrEmpty())
                 {
                     var currUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-                    AppUser currUser = db.AppUser.GetFirst(x => x.Id == currUserId, includeProps: "Establishment");
+                    AppUser currUser = _workUnit.AppUser.GetFirst(x => x.Id == currUserId, includeProps: "Establishment");
 
                     AppUser newUser = new AppUser {
                         UserName = instance.Username,
@@ -119,7 +119,7 @@ namespace WineCellar.Areas.Manager.Controllers
                 }
                 else
                 {
-                    AppUser? updatedUser = db.AppUser.GetFirstOrDefault(x => x.Id == instance.Id, includeProps: "Roles");
+                    AppUser? updatedUser = _workUnit.AppUser.GetFirstOrDefault(x => x.Id == instance.Id, includeProps: "Roles");
 
                     // Return page with error if user is not found
                     if (updatedUser == null)
@@ -156,7 +156,7 @@ namespace WineCellar.Areas.Manager.Controllers
             if (id.IsNullOrEmpty())
                 return BadRequest(new { message = "ID is required" });
 
-            AppUser? instance = db.AppUser.GetFirstOrDefault(x => x.Id == id);
+            AppUser? instance = _workUnit.AppUser.GetFirstOrDefault(x => x.Id == id);
 
             if (instance == null)
                 return NotFound(new { message = "Entity could not be found; check ID is correct" });
