@@ -7,11 +7,11 @@ namespace WineCellar.Areas.Admin.Controllers
     [Area("Admin")]
     public class RegionController : Controller
     {
-        private readonly IWorkUnit db;
+        private readonly IWorkUnit _workUnit;
 
-        public RegionController(IWorkUnit db)
+        public RegionController(IWorkUnit workUnit)
         {
-            this.db = db;
+            _workUnit = workUnit;
         }
 
         #region API
@@ -22,14 +22,14 @@ namespace WineCellar.Areas.Admin.Controllers
             {
                 if (instance.Id == 0)
                 {
-                    db.Region.Add(instance);
-                    db.Save();
+                    _workUnit.Region.Add(instance);
+                    _workUnit.Save();
                     return CreatedAtAction(null, new { id = instance.Id, name = instance.Name });
                 }
                 else
                 {
-                    db.Region.Update(instance);
-                    db.Save();
+                    _workUnit.Region.Update(instance);
+                    _workUnit.Save();
                     return Ok();
                 }
             }
@@ -43,13 +43,13 @@ namespace WineCellar.Areas.Admin.Controllers
             if (id == null || id == 0)
                 return BadRequest(new { message = "Something went wrong. Try again later." });
 
-            Region instance = db.Region.GetFirstOrDefault(x => x.Id == id)!;
+            Region instance = _workUnit.Region.GetFirstOrDefault(x => x.Id == id)!;
 
             if (instance == null)
                 return NotFound(new { message = "Something went wrong: Item could not be found. Try again later." });
 
-            db.Region.Remove(instance);
-            db.Save();
+            _workUnit.Region.Remove(instance);
+            _workUnit.Save();
             return NoContent();
         }
         #endregion

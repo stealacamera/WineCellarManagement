@@ -7,11 +7,11 @@ namespace WineCellar.Areas.Admin.Controllers
     [Area("Admin")]
     public class VarietalController : Controller
     {
-        private readonly IWorkUnit db;
+        private readonly IWorkUnit _workUnit;
 
-        public VarietalController(IWorkUnit db)
+        public VarietalController(IWorkUnit workUnit)
         {
-            this.db = db;
+            _workUnit = workUnit;
         }
 
         #region API
@@ -22,14 +22,14 @@ namespace WineCellar.Areas.Admin.Controllers
             {
                 if (instance.Id == 0)
                 {
-                    db.Varietal.Add(instance);
-                    db.Save();
+                    _workUnit.Varietal.Add(instance);
+                    _workUnit.Save();
                     return CreatedAtAction(null, new { id = instance.Id, name = instance.Name });
                 }
                 else
                 {
-                    db.Varietal.Update(instance);
-                    db.Save();
+                    _workUnit.Varietal.Update(instance);
+                    _workUnit.Save();
                     return Ok();
                 }
             }
@@ -44,13 +44,13 @@ namespace WineCellar.Areas.Admin.Controllers
             if (id == null || id == 0)
                 return BadRequest(new { message = "Something went wrong. Try again later." });
 
-            Varietal instance = db.Varietal.GetFirstOrDefault(x => x.Id == id)!;
+            Varietal instance = _workUnit.Varietal.GetFirstOrDefault(x => x.Id == id)!;
 
             if (instance == null)
                 return NotFound(new { message = "Something went wrong: Item could not be found. Try again later." });
 
-            db.Varietal.Remove(instance);
-            db.Save();
+            _workUnit.Varietal.Remove(instance);
+            _workUnit.Save();
             return NoContent();
         }
         #endregion

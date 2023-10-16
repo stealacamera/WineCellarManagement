@@ -11,11 +11,11 @@ namespace WineCellar.Areas.Admin.Controllers
     [Area("Admin")]
     public class CountryController : Controller
     {
-        private readonly IWorkUnit db;
+        private readonly IWorkUnit _workUnit;
 
-        public CountryController(IWorkUnit db)
+        public CountryController(IWorkUnit workUnit)
         {
-            this.db = db;
+            _workUnit = workUnit;
         }
 
         public IActionResult Index(int page = 1)
@@ -24,12 +24,12 @@ namespace WineCellar.Areas.Admin.Controllers
 
             PaginatedResponse<Country> result = new()
             {
-                Entities = db.Country.GetAll(
+                Entities = _workUnit.Country.GetAll(
                     orderBy: x => x.Id,
                     pageSize: pageSize, pageNumber: page
                 //includeProps: "Regions"
                 ),
-                Pagination = new Pagination(db.Country.Count(), page, pageSize)
+                Pagination = new Pagination(_workUnit.Country.Count(), page, pageSize)
             };
 
             return View(result);
@@ -39,7 +39,7 @@ namespace WineCellar.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult GetRegions(int id)
         {
-            Country? instance = db.Country.GetFirstOrDefault(x => x.Id == id, "Regions");
+            Country? instance = _workUnit.Country.GetFirstOrDefault(x => x.Id == id, "Regions");
 
             if (instance == null)
                 return NotFound(new { message = "ID not valid: Country not found" });
@@ -62,14 +62,14 @@ namespace WineCellar.Areas.Admin.Controllers
             {
                 if (instance.Id == 0)
                 {
-                    db.Country.Add(instance);
-                    db.Save();
+                    _workUnit.Country.Add(instance);
+                    _workUnit.Save();
                     return CreatedAtAction(null, new { id = instance.Id, name = instance.Name });
                 }
                 else
                 {
-                    db.Country.Update(instance);
-                    db.Save();
+                    _workUnit.Country.Update(instance);
+                    _workUnit.Save();
                     return Ok();
                 }
             }
@@ -84,13 +84,13 @@ namespace WineCellar.Areas.Admin.Controllers
             if (id == null || id == 0)
                 return BadRequest(new { message = "Something went wrong. Try again later." });
 
-            Country instance = db.Country.GetFirstOrDefault(x => x.Id == id)!;
+            Country instance = _workUnit.Country.GetFirstOrDefault(x => x.Id == id)!;
 
             if (instance == null)
                 return NotFound(new { message = "Something went wrong: Item could not be found. Try again later." });
 
-            db.Country.Remove(instance);
-            db.Save();
+            _workUnit.Country.Remove(instance);
+            _workUnit.Save();
             return NoContent();
         }
         #endregion

@@ -9,11 +9,11 @@ namespace WineCellar.Areas.Admin.Controllers
     [Area("Admin")]
     public class ProductionEntitiesController : Controller
     {
-        private readonly IWorkUnit db;
+        private readonly IWorkUnit _workUnit;
 
-        public ProductionEntitiesController(IWorkUnit db)
+        public ProductionEntitiesController(IWorkUnit workUnit)
         {
-            this.db = db;
+            _workUnit = workUnit;
         }
 
         public IActionResult Index(int varietalPage = 1, int producerPage = 1)
@@ -24,20 +24,20 @@ namespace WineCellar.Areas.Admin.Controllers
             {
                 Varietals = new PaginatedResponse<Varietal>
                 {
-                    Entities = db.Varietal.GetAll(
+                    Entities = _workUnit.Varietal.GetAll(
                         orderBy: x => x.Id,
                         pageSize: varietalPageSize,
                         pageNumber: varietalPage
                         ),
-                    Pagination = new Pagination(db.Varietal.Count(), varietalPage, varietalPageSize, name: "varietalPage")
+                    Pagination = new Pagination(_workUnit.Varietal.Count(), varietalPage, varietalPageSize, name: "varietalPage")
                 },
                 WineProducers = new PaginatedResponse<WineProducer>
                 {
-                    Entities = db.WineProducer.GetAll(
+                    Entities = _workUnit.WineProducer.GetAll(
                         orderBy: x => x.Id,
                         pageNumber: producerPage
                         ),
-                    Pagination = new Pagination(db.WineProducer.Count(), producerPage, name: "producerPage")
+                    Pagination = new Pagination(_workUnit.WineProducer.Count(), producerPage, name: "producerPage")
                 }
             };
 
